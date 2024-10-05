@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #########################
-# bemenu-qalc v0.1
+# bemenu-qalc
 #
 # Licence: GNU GPLv3
 # Author: Tomasz Kapias
@@ -120,8 +120,10 @@ get_history() {
   fi
 }
 
-while [[ -n "$input" ]]; do
+while
   input=$(get_history | bemenu -p "  = $answer ")
+  [[ -n "$input" ]]
+do
   if [[ "$input" =~ clear$|return$|found$ ]]; then
     answer=""
     help=""
