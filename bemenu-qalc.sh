@@ -109,7 +109,7 @@ get_history() {
   else
     [[ ! -f "$history_file" ]] && mkdir -p $(dirname "$history_file") && touch "$history_file"
     if [[ ! -s "$history_file" ]]; then
-      echo -e "No history found\n󰈆 open gui\n󰌌 keybindings"
+      echo -e "󰋚 no history found\n󰈆 open gui\n󰌌 keybindings"
     else
       if [[ -n "$answer" ]]; then
         echo -n "󰇽 "; tac "$history_file" | head -1
@@ -122,7 +122,7 @@ get_history() {
 
 while [[ -n "$input" ]]; do
   input=$(get_history | bemenu -p "  = $answer ")
-  if [[ "$input" =~ clear$|return$ ]]; then
+  if [[ "$input" =~ clear$|return$|found$ ]]; then
     answer=""
     help=""
   elif [[ "$input" =~ ^󰇽 ]]; then
