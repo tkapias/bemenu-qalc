@@ -136,7 +136,7 @@ do
     answer=""
   elif [[ "$input" =~ gui$ ]]; then
     qalculate-gtk "$answer" &
-    input=""
+    exit
   elif [[ "$input" =~ keybindings$ ]]; then
     help=1
   else
