@@ -18,7 +18,10 @@
 #########################
 
 history_file="$HOME/.local/state/bemenu-qalc-history.txt"
-read -r -d '' keybindings <<- EOF
+
+define(){ IFS=$'\n' read -r -d '' ${1} || true; }
+
+define keybindings <<- 'HEREDOC'
 	#  bemenu-qalc starts in insert mode
 	Left		INSR:	Move cursor left
 	Right		INSR:	Move cursor right
@@ -97,10 +100,10 @@ read -r -d '' keybindings <<- EOF
 	cb		NORM:	Change a word backwards
 	c0		NORM:	Change to start of line
 	c$		NORM:	Change to end of line
-EOF
+HEREDOC
+
 help=""
 answer=""
-input="1"
 
 get_history() {
   if [[ -n "$help" ]]; then
