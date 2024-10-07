@@ -18,9 +18,9 @@
 #########################
 
 history_file="$HOME/.local/state/bemenu-qalc-history.txt"
+keybindings=""
 
-define(){ IFS=$'\n' read -r -d '' ${1} || true; }
-
+define(){ IFS=$'\n' read -r -d '' "${1}" || true; }
 define keybindings <<- 'HEREDOC'
 	#  bemenu-qalc starts in insert mode
 	Left		INSR:	Move cursor left
@@ -110,7 +110,7 @@ get_history() {
     echo -e "󰜉 return"
     echo "$keybindings"
   else
-    [[ ! -f "$history_file" ]] && mkdir -p $(dirname "$history_file") && touch "$history_file"
+    [[ ! -f "$history_file" ]] && mkdir -p "$(dirname "$history_file")" && touch "$history_file"
     if [[ ! -s "$history_file" ]]; then
       echo -e "󰋚 no history found\n󰈆 open gui\n󰌌 keybindings"
     else
