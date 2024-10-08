@@ -17,10 +17,14 @@
 #
 #########################
 
-history_file="$HOME/.local/state/bemenu-qalc-history.txt"
-keybindings=""
+# bemenu-qalc does not use any arguments
 
+# file operations history with results
+history_file="$HOME/.local/state/bemenu-qalc-history.txt"
+
+# bemenu keybindings, defaults and vim mode
 define(){ IFS=$'\n' read -r -d '' "${1}" || true; }
+keybindings=""
 define keybindings <<- 'HEREDOC'
 	#  bemenu-qalc starts in insert mode
 	Left		INSR:	Move cursor left
@@ -105,6 +109,7 @@ HEREDOC
 help=""
 answer=""
 
+# create a list: last opération + header menu + history
 get_history() {
   if [[ -n "$help" ]]; then
     echo -e "󰜉 return"
@@ -125,7 +130,7 @@ get_history() {
 
 while
   input=$(get_history | bemenu -p "  = $answer ")
-  [[ -n "$input" ]]
+  [[ -n "$input" ]] # exit if bemenu quit
 do
   if [[ "$input" =~ clear$|return$|found$ ]]; then
     answer=""
