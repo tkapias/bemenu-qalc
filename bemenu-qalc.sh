@@ -129,7 +129,7 @@ get_history() {
 }
 
 while
-  input=$(get_history | bemenu -p "  = $answer ")
+  input=$(get_history | bemenu -p " = $answer")
   [[ -n "$input" ]] # exit if bemenu quit
 do
   if [[ "$input" =~ clear$|return$|found$ ]]; then
