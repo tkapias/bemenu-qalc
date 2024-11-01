@@ -10,28 +10,42 @@ The preview uses my wrapper for bemenu: [bemenu-orange-wrapper](https://github.c
 
 - [qalc](https://github.com/Qalculate/libqalculate)
 - [bemenu >= 0.6](https://github.com/Cloudef/bemenu)
-- [xclip](https://github.com/astrand/xclip)
 - [Nerd Fonts (Symbols Only)](https://github.com/ryanoasis/nerd-fonts/releases/latest)
 - Bash >= 5
+- xclip
 
 ### Optional
 
 - [bemenu-orange-wrapper](https://github.com/tkapias/bemenu-orange-wrapper)
 - [qalculate-gtk: Qalculate!](https://github.com/Qalculate/qalculate-gtk)
 
-
 ## Installation
 
+### Dependencies
+
+- Debian example with [bemenu-orange-wrapper](https://github.com/tkapias/bemenu-orange-wrapper):
+
+1. Follow [bemenu-orange-wrapper instructions](https://github.com/tkapias/bemenu-orange-wrapper?tab=readme-ov-file#installation).
+
+2. Next:
+
+``` bash
+# xclip, qalc, qalculate-gtk
+sudo apt install xclip qalc qalculate-gtk
+```
+
+### bemenu-qalc
+
 ```bash
-git clone --depth 0 https://github.com/tkapias/bemenu-qalc.git bemenu-qalc
+git clone --depth 1 https://github.com/tkapias/bemenu-qalc.git bemenu-qalc
 cd bemenu-qalc
-chmod +x bemenu-qalc.sh
+chmod +x bemenu-qalc.bash
 ```
 
 - Optional: Symlink to a directory in your user's path:
 
 ```bash
-ln -s $PWD/bemenu-qalc.sh $HOME/.local/bin/bemenu-qalc
+ln -s $PWD/bemenu-qalc.bash $HOME/.local/bin/bemenu-qalc
 ```
 
 ## Features
