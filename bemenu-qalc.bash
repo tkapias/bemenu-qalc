@@ -19,6 +19,15 @@
 
 # bemenu-qalc does not use any arguments
 
+shopt -s extglob
+
+declare -a bemenu_cmd qalc_cmd qalculate_cmd
+declare history_file keybindings help answer input
+
+bemenu_cmd=(bemenu)
+qalc_cmd=(qalc)
+qalculate_cmd=(qalculate-gtk)
+
 # file operations history with results
 history_file="$HOME/.local/state/bemenu-qalc-history.txt"
 
@@ -129,7 +138,7 @@ get_history() {
 }
 
 while
-  input=$(get_history | bemenu -p " = $answer")
+  input=$(get_history | "${bemenu_cmd[@]}" -p " = $answer")
   [[ -n "$input" ]] # exit if bemenu quit
 do
   if [[ "$input" =~ clear$|return$|found$ ]]; then
@@ -138,18 +147,18 @@ do
   elif [[ "$input" =~ ^󰇽 ]]; then
     input="$answer"
   elif [[ "$input" =~ copy$ ]]; then
-    echo "$answer" | xclip -sel clip
+    echo "$answer" | /usr/bin/xclip -sel clip
   elif [[ "$input" =~ reset$ ]]; then
-    truncate -s 0 "$history_file"
+    /usr/bin/truncate -s 0 "$history_file"
     answer=""
   elif [[ "$input" =~ gui$ ]]; then
-    qalculate-gtk "$answer" &
+    /usr/bin/setsid --fork "${qalculate_cmd[@]}" "$answer" >/dev/null 2>&1 &
     exit
   elif [[ "$input" =~ keybindings$ ]]; then
     help=1
   else
     input="$answer$input"
-    answer=$(qalc +u8 -color=never --terse "$input" 2> /dev/null)
+    answer=$("${qalc_cmd[@]}" +u8 -color=never --terse "$input" 2> /dev/null)
     echo "$input = $answer" >> "$history_file"
   fi
 done

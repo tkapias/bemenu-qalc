@@ -12,6 +12,7 @@ The preview uses my wrapper for bemenu: [bemenu-orange-wrapper](https://github.c
 - [bemenu >= 0.6](https://github.com/Cloudef/bemenu)
 - [Nerd Fonts (Symbols Only)](https://github.com/ryanoasis/nerd-fonts/releases/latest)
 - Bash >= 5
+- setsid
 - xclip
 
 ### Optional
@@ -30,8 +31,8 @@ The preview uses my wrapper for bemenu: [bemenu-orange-wrapper](https://github.c
 2. Next:
 
 ``` bash
-# xclip, qalc, qalculate-gtk
-sudo apt install xclip qalc qalculate-gtk
+# xclip, setsid, qalc, qalculate-gtk
+sudo apt install xclip util-linux qalc qalculate-gtk
 ```
 
 ### bemenu-qalc
